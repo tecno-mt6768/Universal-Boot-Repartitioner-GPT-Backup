@@ -1,44 +1,48 @@
 #!/sbin/sh
 
 #-----------------------------------------------------------------------
-# Назначение: Переразметка раздела boot с бэкапом GPT через ZIP в Recovery
-# Версия: 1.3 (Universal Port)
-# Автор: isus203
+# Purpose: Repartitioning the boot partition with a GPT backup via ZIP in Recovery
+# Version: 1.3 (Universal Port)
+# Author: isus203
 #-----------------------------------------------------------------------
 
 # ======================================================================
-#   ⚙️ КОНФИГУРАЦИЯ ДЛЯ ПОРТИРОВАНИЯ (РЕДАКТИРОВАТЬ ЗДЕСЬ)
+#   ⚙️ CONFIGURATION FOR PORTING (EDIT HERE)
 # ======================================================================
 
-# 1. УСТРОЙСТВО
-# Путь к основному блоку памяти (mmcblk0 для EMMC, sda для UFS и т.д.)
+# 1. DEVICE
+# Path to the main memory block (mmcblk0 for EMMC, sda for UFS, etc.)
 DEVICE="/dev/block/mmcblk0"
 
-# 2. ПУТИ
-# Куда сохранять бэкапы и логи (внешняя карта или внутренняя память)
+# 2. PATHS
+# Where to save backups and logs (external card or internal memory)
 EXTERNAL_PATH="/external_sd"
 
-# 3. ИМЕНА РАЗДЕЛОВ
-# Как они называются в /dev/block/by-name/
+# 3. PARTITION NAMES
+# What they are called in /dev/block/by-name/
 BOOT_A_NAME="boot_a"
 BOOT_B_NAME="boot_b"
 
-# 4. НОМЕРА И СЕКТОРЫ (Смотреть через sgdisk -p)
-# Номера удаляемых разделов
+# 4. NUMBERS AND SECTORS (View with sgdisk -p)
+# Boot partition numbers to delete
 OLD_BOOT_A_NUM="30"
-OLD_BOOT_B_NUM="31"
+OLD_BOOT_B_NUM="43"
 
-# Номера создаваемых разделов
+# Vendor_boot partition numbers to be deleted
+NEW_VENDOR_BOOT_A_NUM="31"
+NEW_VENDOR_BOOT_B_NUM="44"
+
+# Numbers of created sections
 NEW_BOOT_A_NUM="30"
 NEW_BOOT_B_NUM="43"
 
-# СЕКТОРЫ (Начало:Конец) - САМОЕ ВАЖНОЕ!
-# Пример: 1003520:1200127
+# SECTORS (Start:End) - THE MOST IMPORTANT THING!
+# Example: 1003520:1200127
 BOOT_A_SECTORS="1003520:1200127"
 BOOT_B_SECTORS="1708032:1904639"
 
 # ======================================================================
-#           ⛔ КОНЕЦ НАСТРОЕК (ДАЛЕЕ КОД НЕ ТРОГАТЬ)
+#           ⛔ END OF SETTINGS (DO NOT TOUCH THE CODE FURTHER)
 # ======================================================================
 
 # Аргументы update-binary
@@ -110,7 +114,7 @@ backup_gpt() {
     
     # Копируем Sgdisk/backup GPT
     cp "$SGDISK" "$BACKUP_DIR" 2>/dev/null  
-    dd if="/dev/block/by-name/$BOOT_A_NAME" of="$BACKUP_DIR/boot_a.img" bs=4M >> "$LOGFILE" 2>&1
+    dd if="/dev/block/by-name/$BOOT_A_NAME" of="$BACKUP_DIR/boot_a.img" >> "$LOGFILE" 2>&1
     if [ $? -eq 0 ]; then
         ui_print "GPT backup saved: $BACKUP_DIR"
     else
@@ -179,9 +183,9 @@ chmod +x "$BACKUP_DIR/META-INF/com/google/android/update-script"
 # Переразметка boot
 repartition_boot() {
     ui_print "Re-marking boot..."
-      "$SGDISK" "$DEVICE" -d $OLD_BOOT_A_NUM -d $OLD_BOOT_B_NUM -n $NEW_BOOT_A_NUM:$BOOT_A_SECTORS -c $NEW_BOOT_A_NUM:$BOOT_A_NAME -t $NEW_BOOT_A_NUM:0700
+      "$SGDISK" "$DEVICE" -d $OLD_BOOT_A_NUM -d $NEW_VENDOR_BOOT_A_NUM -n $OLD_BOOT_A_NUM:$BOOT_A_SECTORS -c $OLD_BOOT_A_NUM:$BOOT_A_NAME -t $OLD_BOOT_A_NUM:0700
     if [ $? -ne 0 ]; then exit 1; fi
-      "$SGDISK" "$DEVICE" -d $NEW_BOOT_B_NUM -d $OLD_BOOT_B_NUM -n $NEW_BOOT_B_NUM:$BOOT_B_SECTORS -c $NEW_BOOT_B_NUM:$BOOT_B_NAME -t $NEW_BOOT_B_NUM:0700
+      "$SGDISK" "$DEVICE" -d $OLD_BOOT_B_NUM -d $NEW_VENDOR_BOOT_B_NUM -n $OLD_BOOT_B_NUM:$BOOT_B_SECTORS -c $OLD_BOOT_B_NUM:$BOOT_B_NAME -t $OLD_BOOT_B_NUM:0700
     if [ $? -ne 0 ]; then exit 1; fi
       "$SGDISK" "$DEVICE" -s
     if [ $? -ne 0 ]; then exit 1; fi
