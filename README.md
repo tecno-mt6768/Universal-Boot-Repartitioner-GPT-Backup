@@ -102,7 +102,9 @@ Step 3: Finalize & Flash
 If something goes wrong but you can access TWRP:
  * Go to the folder defined in EXTERNAL_PATH.
  * Find the file: gpt_partition_backup_DATE_TIME.zip.
- * Flash it via TWRP. It will restore the original GPT table and boot image.
+ * Flash it via TWRP. It will restore the original GPT table and boot image
+```
+
 <a name="русский"></a>
 🇷🇺 Русский
 Скрипт для безопасной переразметки boot с автоматическим бэкапом.
@@ -180,6 +182,7 @@ BOOT_B_SECTORS="1708032:1904639"
  * Найдите файл: gpt_partition_backup_ДАТА_ВРЕМЯ.zip.
  * Просто прошейте этот ZIP через TWRP.
  * Он вернет старую таблицу разделов и старый boot.
+
 📱 Tested Devices / Проверено на
  * Tecno Spark 9 Pro
  * Tecno Camon 19 Neo
