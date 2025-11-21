@@ -105,7 +105,6 @@ If something goes wrong but you can access TWRP:
  * Infinix Note 10 Pro NFC (X695C)
  * Chipsets: MTK
  * Android: 11, 12, 13
- * Port for Tecno Camon 19 Neo / Infinix Note 10 Pro
 
 📥 Download the template
 https://github.com/tecno-mt6768/Universal-Boot-Repartitioner-GPT-Backup/releases/download/v1.3/Universal-Boot-Repartitioner-GPT-Backup.zip
