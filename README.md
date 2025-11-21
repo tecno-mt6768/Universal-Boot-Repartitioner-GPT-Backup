@@ -107,4 +107,4 @@ If something goes wrong but you can access TWRP:
  * Android: 11, 12, 13
  * Port for Tecno Camon 19 Neo / Infinix Note 10 Pro
 📥 Downloads
-Download Template / Скачать шаблон
+(https://github.com/tecno-mt6768/Universal-Boot-Repartitioner-GPT-Backup/releases/download/v1.3/Universal-Boot-Repartitioner-GPT-Backup.zip)
