@@ -8,7 +8,9 @@
 
 **Universal script for safe boot repartitioning with automatic backup / Скрипт для безопасной переразметки boot с автоматическим бэкапом**
 
-</dir>
+</div>
+
+---
 
 **Universal tool to resize `boot_a` and `boot_b` partitions by merging them with unused `vendor_boot`.**
 
@@ -95,7 +97,7 @@ Step 4: Finalize & Flash
 If something goes wrong but you can access TWRP:
  * Go to the folder defined in EXTERNAL_PATH.
  * Find the file: gpt_partition_backup_DATE_TIME.zip.
- * Flash it via TWRP. It will restore the original GPT table and boot image
+ * Flash it via TWRP. It will restore the original GPT table and boot image.
 
 📱 Tested Devices
  * Tecno Spark 9 Pro
