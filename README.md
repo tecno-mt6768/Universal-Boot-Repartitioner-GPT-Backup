@@ -106,5 +106,6 @@ If something goes wrong but you can access TWRP:
  * Chipsets: MTK
  * Android: 11, 12, 13
 
-📥 Download the template
-https://github.com/tecno-mt6768/Universal-Boot-Repartitioner-GPT-Backup/releases/download/v1.3/Universal-Boot-Repartitioner-GPT-Backup.zip
+📥 
+[Download the template](https://github.com/tecno-mt6768/Universal-Boot-Repartitioner-GPT-Backup/releases/download/v1.3/Universal-Boot-Repartitioner-GPT-Backup.zip)
+
