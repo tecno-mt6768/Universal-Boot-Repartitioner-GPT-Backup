@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Author](https://img.shields.io/badge/Author-isus203-orange.svg)](https://github.com/isus203)
 
-**Universal script for safe boot repartitioning with automatic backup / Скрипт для безопасной переразметки boot с автоматическим бэкапом**
+**Universal script for safe boot repartitioning with automatic backup
 
 </div>
 
