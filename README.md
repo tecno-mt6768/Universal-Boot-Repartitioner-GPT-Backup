@@ -103,6 +103,7 @@ If something goes wrong but you can access TWRP:
  * Tecno Spark 9 Pro
  * Tecno Camon 19 Neo
  * Infinix Note 10 Pro NFC (X695C)
+ * Infinix Note 11 X663
  * Chipsets: MTK
  * Android: 11, 12, 13
 
