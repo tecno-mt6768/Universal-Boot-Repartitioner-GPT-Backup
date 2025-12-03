@@ -3,7 +3,7 @@
 # Universal Boot Repartitioner + GPT Backup
 
 [![Android](https://img.shields.io/badge/Android-11%2B-green.svg)](https://www.android.com/)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-GPL-3.0-blue.svg)](LICENSE)
 [![Author](https://img.shields.io/badge/Author-isus203-orange.svg)](https://github.com/isus203)
 
 **Universal script for safe boot repartitioning with automatic backup
