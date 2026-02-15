@@ -25,21 +25,21 @@ BOOT_B_NAME="boot_b"
 
 # 4. NUMBERS AND SECTORS (View with sgdisk -p)
 # Boot partition numbers to delete
-OLD_BOOT_A_NUM="30"
-OLD_BOOT_B_NUM="43"
+OLD_BOOT_A_NUM="23"
+OLD_BOOT_B_NUM="37"
 
 # Vendor_boot partition numbers to be deleted
-NEW_VENDOR_BOOT_A_NUM="31"
-NEW_VENDOR_BOOT_B_NUM="44"
+NEW_VENDOR_BOOT_A_NUM="24"
+NEW_VENDOR_BOOT_B_NUM="38"
 
 # Numbers of created sections
-NEW_BOOT_A_NUM="30"
-NEW_BOOT_B_NUM="43"
+NEW_BOOT_A_NUM="23"
+NEW_BOOT_B_NUM="37"
 
 # SECTORS (Start:End) - THE MOST IMPORTANT THING!
 # Example: 1003520:1200127
-BOOT_A_SECTORS="1003520:1200127"
-BOOT_B_SECTORS="1708032:1904639"
+BOOT_A_SECTORS="917504:1114111"
+BOOT_B_SECTORS="1458176:1654783"
 
 # ======================================================================
 #           ⛔ END OF SETTINGS (DO NOT TOUCH THE CODE FURTHER)
