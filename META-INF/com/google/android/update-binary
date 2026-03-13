@@ -134,9 +134,22 @@ mkdir -p "$BACKUP_DIR/META-INF/com/google/android"
 cat > "$BACKUP_DIR/META-INF/com/google/android/update-binary" << EOF
 #!/sbin/sh
 OUTFD="/proc/self/fd/\$2"
-DEVICE="$DEVICE"
 SGDISK="/tmp/sgdisk"
 BOOT_IMG="/tmp/boot_a.img"
+
+# ======================================================================
+#   ⚙️ CONFIGURATION FOR PORTING (EDIT HERE)
+# ======================================================================
+# Path to the main memory block (mmcblk0 for EMMC, sda for UFS, etc.)
+DEVICE="/dev/block/mmcblk0"
+
+# What they are called in /dev/block/by-name/
+BOOT_A_NAME="boot_a"
+BOOT_B_NAME="boot_b"
+
+# ======================================================================
+#           ⛔ END OF SETTINGS (DO NOT TOUCH THE CODE FURTHER)
+# ======================================================================
 
 ui_print() {
     echo -e "ui_print \$1\nui_print" >> "\$OUTFD"
@@ -154,10 +167,10 @@ mkdir -p /tmp
 unzip -o "\$3" -d /tmp
 
 ui_print "Issuance of rights..."
-chmod 755 "\$SGDISK"
-chmod 644 "\$BOOT_IMG"
+chmod 755 $SGDISK
+chmod 644 $BOOT_IMG
 
-"\$SGDISK" -l /tmp/gpt_backup.bin "\$DEVICE"
+$SGDISK -l /tmp/gpt_backup.bin $DEVICE
 dd if=/tmp/boot_a.img of=/dev/block/by-name/$BOOT_A_NAME
 dd if=/tmp/boot_a.img of=/dev/block/by-name/$BOOT_B_NAME
 ui_print "Recovery complete"
